@@ -1,0 +1,17 @@
+<!-- wrapper for every html file -->
+<html>
+    <head>
+        <title>
+             <%= title %>
+        </title>
+        <link rel="stylesheet" href="/css/layout.css">
+        <%- style %>
+    </head>
+
+    <body>
+        <%- include('_header');%>  <!--including header file -->
+        <%- body %>
+        <%- include('_footer');%>  <!--including footer file -->
+        <%- script %>
+    </body>
+</html>
