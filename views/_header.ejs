@@ -1,4 +1,26 @@
 <!-- partial view,reuse of simimlar code  -->
-<header>
-    Page Header
-</header>
+<nav id="nav-container">
+    <header>
+        CodeIt
+    </header>
+        <ul>
+            <% if (locals.user){ %>    <!--locals.user and user are both the same things, we are wrting locals.user to handle the error saying user variable not found,since we have not declared so used it like this -->
+                <li>
+                    <a href="/users/profile">
+                        <%=user.name %>
+                    </a>
+                </li>
+                <li>
+                    <a href="/users/sign-out">Sign Out</a>
+                </li>
+            <%} else {%>
+                <li>
+                    <a href="/users/sign-in">Sign In</a>
+                </li>
+
+                <li>
+                    <a href="/users/sign-up">Sign Up</a>
+                </li>
+            <% } %>
+        </ul>
+</nav>
