@@ -1,0 +1,33 @@
+<li id="comment-<%= comment._id %>">
+        <p>
+                <div class="post-details comment-details">
+                <img src="<%= comment.user.avatar %>" alt="<%= comment.user.name %>" width="40">
+
+                <small id="user-name">
+                    <%=comment.user.name%>
+                </small>
+                <small id="likes">
+                                <% if (locals.user){ %>
+                                    <a class="toggle-like-button" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
+                                        <span>
+                                        <i class="far fa-thumbs-up"></i><%= comment.likes.length %> Likes
+                                        </span>
+                                    </a>
+                                <% }else{ %>
+                                        <i class="far fa-thumbs-up"></i> <%= comment.likes.length %> Likes
+                                <% } %>
+                        </small>
+                        <% if (locals.user && locals.user.id == comment.user.id){%>   <!--only signed in user can see and use delete button -->
+                                <small>
+                                        <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">X</a>
+                                </small>
+                        <% } %>
+                </div>
+                <br>
+                <div class="user-posts user-comments">
+                <%= comment.content%>
+                </div>      
+            <!-- display the likes of this comment, if the user is logged in, then show the link to toggle likes, else, just show the count -->
+            <!-- study about the data attribute -->
+        </p>
+    </li>

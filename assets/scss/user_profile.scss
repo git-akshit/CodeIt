@@ -1,6 +1,91 @@
 body{
-    background-color: lightblue;
     #user-details{
         padding: 1%;
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        align-items: center;
+        justify-content: space-around;
+        margin-left: 15%;
+        margin-top: 5%;
+
+        .headers{
+            color: #698cfc;
+            font-size: 0.9rem;
+            font-weight: 400;
+            left: 5%;
+        }
+        input{
+            width: 250px;
+            margin-top: 5%;
+            margin-left: 10%;
+            padding: 5px;
+            border: none;
+            border-bottom: 1px solid #698cfc;
+            outline:none;
+            font-size: 0.8rem;
+            color: #698cfc;
+        }
+
+        .button{
+            height: 35px;
+            width: 70px;
+            color: white;
+            background-color: #698cfc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            margin-left: 39.5%;
+        }
+        .file{
+            height: 35px;
+            width: 320px;
+            color: #698cfc;
+            //background-color: #698cfc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+           // margin-left: 39.5%;
+           border: none;
+        }
+        .button:hover{
+            cursor: pointer;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            top: 2%;
+        }
+
+        .user-name{
+            display: flex;
+            width: 55%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .add-friend{
+            width: 25%;
+            margin-top: 5%;
+            
+            
+            a{
+                text-decoration: none;
+                span{
+                    color: #698cfc;
+                }
+            }
+        }
     }
+
+    // img {
+    //     width: 150px;
+    //     height: 150px;
+    //     border-radius: 50%;
+    //     top: 2%;
+    // }
+
 }

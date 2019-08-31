@@ -6,7 +6,7 @@
         <ul>
             <% if (locals.user){ %>    <!--locals.user and user are both the same things, we are wrting locals.user to handle the error saying user variable not found,since we have not declared so used it like this -->
                 <li>
-                    <a href="/users/profile">
+                    <a href="/users/profile/<%= user._id%>">
                         <%=user.name %>
                     </a>
                 </li>

@@ -1,8 +1,21 @@
-<h1>Sign In</h1>
+<link rel="stylesheet" href="/css/signUp.css">
 
-<form action="/users/create-session" method="POST">
-    <input type="email" name="email" placeholder="Email"  required>
-    <input type="password" name="password" placeholder="Password"  required>
-    <input type="submit" value="Sign In">
+<div class="form-container">
+    <h1>Sign In</h1>
 
-</form>
+    <div class="signUpForm">
+        <form action="/users/create-session" method="POST">
+            <input type="email" class="headers" name="email" placeholder="Email"  required>
+            <input type="password" class="headers" name="password" placeholder="Password"  required>
+            <input type="submit" class="button signInButton" value="Sign In">
+
+        </form>
+    </div>
+
+    <p>
+        <a href="/users/auth/google">Google Sign In/Sign Up</a>
+    </p>
+
+    <a href="/reset_passwords/forgot">Forgot Password?</a>
+
+</div>

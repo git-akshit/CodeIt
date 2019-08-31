@@ -1,0 +1,57 @@
+body .form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5%; }
+  body .form-container h1 {
+    color: #698cfc; }
+  body .form-container .signUpForm {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    body .form-container .signUpForm .headers {
+      color: #698cfc;
+      font-size: 0.9rem;
+      font-weight: 400;
+      left: 5%; }
+    body .form-container .signUpForm input {
+      width: 46%;
+      margin-top: 5%;
+      margin-right: 2.5%;
+      padding: 5px;
+      border: none;
+      border-bottom: 1px solid #698cfc;
+      outline: none;
+      font-size: 0.8rem;
+      color: #698cfc; }
+    body .form-container .signUpForm .button {
+      margin-top: 5%;
+      height: 50px;
+      width: 20%;
+      color: white;
+      background-color: #698cfc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      margin-left: 39.5%;
+      margin-bottom: 40px;
+      margin-top: 10%; }
+    body .form-container .signUpForm .signInButton {
+      margin-top: 15%;
+      width: 25%;
+      height: 45px;
+      margin-bottom: 10px; }
+    body .form-container .signUpForm .changePassword {
+      margin-top: 15%;
+      width: 40%;
+      height: 45px;
+      margin-left: 30%;
+      font-size: 1rem; }
+    body .form-container .signUpForm .button:hover {
+      cursor: pointer; }
+  body .form-container a {
+    text-decoration: none;
+    color: #698cfc; }

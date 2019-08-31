@@ -1,0 +1,109 @@
+// CHANGE :: add styling for the chat box
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.open-button{
+	height: 40px;
+	width: 300px;
+	font-size: 25px;
+	color: white;
+	border: none;
+	background: #698cfc;
+	position: fixed;
+	bottom: 54px;
+	right: 11px;
+ }
+ .open-button:hover{
+	background: #3F5497;
+	cursor: pointer;
+ }
+#user-chat-box{
+    position: fixed;
+    bottom: 50px;
+    right: 10px;
+    border: 1px solid #698cfc;
+    height: 350px;
+	width: 300px;
+	background: white;
+	padding: 5px;
+	box-shadow: 1px 1px 1px 1px lightgrey;
+	display: none;
+	flex-direction: column;
+    #chat-messages-list{
+    	list-style: none;
+	    padding: 10px;
+	    height: 70%;
+	    background-color: white;
+	    overflow: auto;
+
+	    .other-message{
+		    text-align: left;
+		    padding: 5px;
+		    span{
+		    	display: inline-block;
+	    		padding: 10px;
+		    	background-color: #ffa0a0;
+		    }
+		    
+	    }
+
+	    .self-message{
+		    text-align: right;
+		    padding: 5px;
+		   
+		    span{
+		    	 
+	    		display: inline-block;
+	    		padding: 10px;
+    			background-color: #a0dcff;
+		    }
+		   
+	    }
+
+    }
+    #chat-message-input-container{
+    	    height: 24%;
+		    width: 100%;
+		    display: flex;
+		    flex-direction: row;
+            margin-bottom: -10%;
+		    #chat-message-input{
+	    	    height: 50%;
+    			width: 70%;
+		    }
+
+		    #send-message{
+	    	    height: 50%;
+			    width: 30%;
+			    font-size: 25px;
+			    color: white;
+			    border: none;
+				background: #698cfc;
+				outline: none;
+			}
+
+			#send-message:hover{
+				background: #3F5497;
+				cursor: pointer;
+				
+			 }
+			
+		}
+		
+		 .button-cancel{
+			height: 40px;
+			width: 100%;
+			font-size: 25px;
+			color: white;
+			border: none;
+			top: -2%;
+			background: #698cfc;
+		 }
+
+		 .button-cancel:hover{
+			background: #3F5497;
+			cursor: pointer;
+		 }
+		 
+}

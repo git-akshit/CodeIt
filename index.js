@@ -8,8 +8,19 @@ const db = require('./config/mongoose');
 const session = require('express-session');//to encrypt the session id(user_id)
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const passportJWT = require('./config/passport-jwt-strategy');
+const passportGoogle = require('./config/passport-google-oauth2-strategy');
+
 const MongoStore = require('connect-mongo')(session);//passing session as argument because it will store the cookies from this session
 const sassMiddleware = require('node-sass-middleware');//it converts sass/scss code to css so that browser can understand it
+const flash = require('connect-flash');//acquiring connect-flash
+const customMware = require('./config/middleware');//acquiring middleware
+
+// setup the chat server to be used with socket.io
+const chatServer = require('http').Server(app); //requiring Server with app
+const chatSockets = require('./config/chat_sockets').chatSockets(chatServer); // requiring chat sockets
+chatServer.listen(5000);
+console.log('chat server is listening on port 5000');
 
 //using sass before server so that it changes sass files to css that is complies css files
 app.use(sassMiddleware({
@@ -25,6 +36,9 @@ app.use(express.urlencoded());//reading from the post requests
 app.use(cookieParser());//setting up/using the cookie parser
 
 app.use(express.static('./assets'));//telling where static files are
+
+// make the uploads path available to the browser
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 app.use(expressLayouts); //using expressLayouts before routes because routes renders the view and we need to tell view that there are layouts also
 
@@ -61,6 +75,9 @@ app.use(passport.initialize());
 app.use(passport.session()); // passport also helps in mainting the session
 
 app.use(passport.setAuthenticatedUser);// whenever app is initialised then passport is also initialised, the user is stored in locals and can be used by the views,it checks whether session cookie is being mainted or not then this function is automatically called in middleware
+
+app.use(flash()); //it uses session cookies so thats why it is being used after session
+app.use(customMware.setFlash);//using flash
 
 //use express router, use routes after initialising  
 app.use('/',require('./routes')); //it will by deafault fetch index in routes;

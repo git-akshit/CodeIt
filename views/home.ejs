@@ -1,11 +1,113 @@
-<h1>
-    CodeIt/ <%= title %>
-</h1>
+<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/chat_box.css">
 
-<section id="feed-posts">
-        <h4>Posts</h4>
-        <form action="" id="new-post-form" method="POST">
-                <textarea name="content" cols="30" rows="3"></textarea>
-                <input type="submit" value="Post">
-        </form>
-</section>
+<div id="home-container">
+        <div id="empty-space">
+
+        </div>
+        <div id="feed-posts-container">
+                <section id="feed-posts">
+                <h4>Write A Post</h4>
+                <% if(locals.user){ %>  <!-- only signed in user can see the form -->
+                <form action="/posts/create" id="new-post-form" method="POST">
+                        <textarea name="content" cols="80" rows="10" required></textarea>
+                        <input class="submit-button" type="submit" value="Post">
+                </form>
+                <% } %>
+                <div id="posts-list-container">
+                        <div id="all-post-header-container">
+                                All Posts
+                        </div>
+                        
+                        <ul>
+                                <% for(post of posts) {%>
+                                        <%- include('_post')-%>
+                                <% } %>
+                        </ul>
+                </div>
+                </section>
+        </div>
+
+        <section id="user-freinds">
+                <h4>Friends</h4>
+                <% if (locals.user){ %> 
+                        <% for(u of all_users){%>
+                                <p class="friends">
+                                        
+                                                <%let flag= 0%>
+                                                <%if (locals.user.friendships.length > 0){%>
+                                                        <%for (i of locals.user.friendships){%>
+                                                                <%if (i == u.id){%>
+                                                                        <%flag = 1%>
+                                                                        <%break%>   
+                                                                <%}else{%>
+                                                                        <%flag = 0%>
+                                                                <%} %>
+                                                        <%} %>
+                                                        <%if (flag == 1){%>
+                                                                <img src="<%= u.avatar %>" alt="<%= u.name %>" >
+                                                                <span>
+                                                                <a href="/users/profile/<%= u.id%>">
+                                                                      <%= u.name %>
+                                                                </a>
+                                                         </span>
+                                                        <%}%>
+                                                <%}%>
+                                </p>
+                        <% } %>
+                <% } %>
+                <h4>All Users</h4>
+                <% for(u of all_users){%>
+                        <p class="friends">
+                                <img src="<%= u.avatar %>" alt="<%= u.name %>" >
+                                <span>
+                                     <a href="/users/profile/<%= u.id%>"><%= u.name %></a>
+                                </span>
+                              
+                        </p>
+                <% } %>
+        </section>
+        <%- include('_chat_box') -%>
+</div>
+
+<!-- importing this script for creating the comments -->
+<script src="/js/home_post_comments.js" ></script>
+<script src="/js/home_posts.js"></script>
+
+<!-- import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
+<script src="js/toggle_likes.js"></script>
+<script>
+    $('.toggle-like-button').each(function(){
+        let self = this;
+        let toggleLike = new ToggleLike(self);
+    });
+</script>
+
+<!-- import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
+<!-- <script src="js/toggle_friends.js"></script>
+<script>
+    $('.toggle-friend-button').each(function(){
+        let self = this;
+        let toggleFriend = new ToggleFriend(self);
+    });
+</script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script src="/js/chat_engine.js"></script>
+
+<% if (locals.user){%>
+        <script>
+                new ChatEngine('user-chat-box', '<%= locals.user.email%>', '<%= locals.user.name%>')
+        </script>
+<%}%>
+
+<script>
+
+        function openForm() {
+        document.getElementById("user-chat-box").style.display = "flex";
+        }
+                
+        function closeForm() {
+          document.getElementById("user-chat-box").style.display = "none";
+        }
+</script>

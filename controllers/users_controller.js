@@ -1,10 +1,64 @@
 const User = require('../models/user');
+const fs = require('fs'); // requiring fs to delete the file
+const path = require('path'); // requiring path to delete the file
 
 //controllers fetches the views and send it to the browser when requests comes in
 module.exports.profile = function(req, res){
-    return res.render('user_profile',{ //name of html ejs file
-        title: "Profile"
+    User.findById(req.params.id, function(err, user){
+        return res.render('user_profile',{ //name of html ejs file
+            title: "Profile",
+            profile_user: user
+        });
+    
     });
+}
+
+module.exports.update = async function(req, res){
+    // if(req.user.id == req.params.id){  //only the signed user can use it, no other can change user id from develpoer tools
+    //     User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+    //         return res.redirect('back');
+    //     });
+    // }else{
+    //     return res.status(401).send('Unauthorized');
+    // }
+
+    if(req.user.id == req.params.id){
+
+        try{
+
+            let user = await User.findById(req.params.id);
+            User.uploadedAvatar(req, res, function(err){    // we wouldnt have been able to read the body without multer because form has multipart in it
+                if (err) {console.log('********Multer Error: ', err)}
+
+                user.name = req.body.name;
+                user.email = req.body.email;
+
+                if (req.file){
+
+                    if (user.avatar){ //if user has avatar
+                        if (fs.existsSync(path.join(__dirname, '..', user.avatar))) { //if user avatar has file in it
+                            fs.unlinkSync(path.join(__dirname, '..', user.avatar)); //replace the file with new one
+                        }
+                       
+                    }
+
+                    //this is saving the path of the uploaded file into the avatar field in the user
+                    user.avatar = User.avatarPath + '/' + req.file.filename; //storing the current User file path in avatar field which is in user, as avatarPath is made public
+                    //the file is stored in uploads/users/avatars
+                }
+                //console.log(req.file);
+                user.save();
+                return res.redirect('back');
+            });
+
+        }catch(err){
+            req.flash('error', err);
+            return res.redirect('back');
+        }
+    }else{
+        req.flash('error', 'Unauthorized');
+        return res.status(401).send('Unauthorized');
+    }
 }
 
 
@@ -50,11 +104,20 @@ module.exports.create = function(req, res){
 
 //sign in and create a session for the user
 module.exports.createSession = function(req, res){
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/'); //when user signed in then go home
 };
 
 module.exports.destroySession = function(req, res){
     req.logout(); // this function is given to request using passport.js to logout
-
+    req.flash('success', 'You have successfully logged out');
     return res.redirect('/');
 }
+
+
+
+// module.exports.forgot = function(req,res){
+//     return res.render('reset_password',{
+//         title:"Forgot Password"
+//     })
+// }

@@ -9,7 +9,20 @@ const postSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User' //reffereing to user
-    }
+    },
+    //include the array of ids of all comments in this post schema itself,adding comments array for fast retreival o all comments in the post
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment' //reffereing to comment
+        }
+    ],
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Like' 
+        }
+    ]
 },{
     timestamps: true
 });
