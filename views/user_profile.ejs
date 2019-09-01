@@ -1,5 +1,6 @@
-<link rel="stylesheet" href="/css/user_profile.css">
-<link rel="stylesheet" href="/css/signUp.css">
+<link rel="stylesheet" href="<%= assetPath('css/user_profile.css') %>">
+<link rel="stylesheet" href="<%= assetPath('css/signUp.css') %>">
+
 
 <div id="user-details">
     <% if(user.id == profile_user.id){%>
@@ -65,7 +66,7 @@
     </div>
 </div>
 
-<script src="/js/toggle_friends.js"></script>
+<script src="<%= assetPath('js/toggle_friends.js') %>"></script>
 <script>
     $('.toggle-friend-button').each(function(){
         let self = this;

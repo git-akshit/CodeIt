@@ -1,0 +1,16 @@
+#nav-container {
+  display: flex;
+  height: 40px;
+  width: 98%;
+  justify-content: space-between;
+  padding: 0 1% 0 1%;
+  background-color: #698cfc;
+  color: white;
+  align-items: center; }
+  #nav-container header {
+    font-size: 1.8rem; }
+  #nav-container ul li {
+    display: inline; }
+    #nav-container ul li a {
+      text-decoration: none;
+      color: white; }

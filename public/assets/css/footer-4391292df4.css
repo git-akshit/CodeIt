@@ -1,0 +1,19 @@
+#footer-container {
+  display: flex;
+  height: 40px;
+  width: 98%;
+  justify-content: space-between;
+  padding: 0 1% 0 1%;
+  background-color: gray;
+  color: white;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0; }
+  #footer-container header {
+    font-size: 1.8rem; }
+  #footer-container ul li {
+    display: inline; }
+    #footer-container ul li a {
+      text-decoration: none;
+      color: white; }

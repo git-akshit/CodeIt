@@ -1,0 +1,105 @@
+body #home-container {
+  display: flex;
+  height: 100%;
+  width: 100%; }
+  body #home-container #empty-space {
+    width: 20%; }
+  body #home-container #feed-posts-container {
+    width: 70%;
+    display: flex;
+    justify-content: flex-end; }
+    body #home-container #feed-posts-container #feed-posts {
+      width: 100%;
+      padding: 10px; }
+      body #home-container #feed-posts-container #feed-posts textarea {
+        border-color: #698cfc;
+        width: 70%; }
+      body #home-container #feed-posts-container #feed-posts .submit-button {
+        display: block;
+        margin-top: 2%;
+        width: 70px;
+        height: 25px;
+        background-color: #698cfc;
+        color: white;
+        border: none;
+        font-size: 1rem; }
+      body #home-container #feed-posts-container #feed-posts #posts-list-container {
+        border: 1px solid #698cfc;
+        width: 70%; }
+        body #home-container #feed-posts-container #feed-posts #posts-list-container #all-post-header-container {
+          width: 100%;
+          height: 25px;
+          background-color: #698cfc;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+        body #home-container #feed-posts-container #feed-posts #posts-list-container ul {
+          list-style-type: none; }
+        body #home-container #feed-posts-container #feed-posts #posts-list-container .post-details {
+          margin-bottom: 2%;
+          width: 85%;
+          display: flex;
+          align-items: center;
+          justify-content: space-around; }
+          body #home-container #feed-posts-container #feed-posts #posts-list-container .post-details #user-name {
+            flex-grow: 1;
+            margin-left: 4%;
+            font-size: 1.2rem; }
+          body #home-container #feed-posts-container #feed-posts #posts-list-container .post-details #likes {
+            flex-grow: 9;
+            font-size: 0.8rem;
+            color: #698cfc; }
+          body #home-container #feed-posts-container #feed-posts #posts-list-container .post-details .delete-post-button {
+            flex-grow: 1;
+            color: red; }
+          body #home-container #feed-posts-container #feed-posts #posts-list-container .post-details .delete-comment-button {
+            flex-grow: 1;
+            color: red; }
+        body #home-container #feed-posts-container #feed-posts #posts-list-container .comment-details {
+          margin-bottom: -4%; }
+        body #home-container #feed-posts-container #feed-posts #posts-list-container .user-posts {
+          height: 25px;
+          width: 85%;
+          border: 1px solid #698cfc;
+          display: flex;
+          align-items: center;
+          padding: 2%; }
+        body #home-container #feed-posts-container #feed-posts #posts-list-container .post-comments {
+          width: 85%;
+          border: 1px solid #698cfc;
+          display: flex;
+          justify-content: center;
+          flex-direction: column-reverse;
+          padding: 2%; }
+          body #home-container #feed-posts-container #feed-posts #posts-list-container .post-comments #comment-box {
+            height: 25px;
+            width: 100%; }
+          body #home-container #feed-posts-container #feed-posts #posts-list-container .post-comments .comment-button {
+            width: 98px;
+            font-size: 0.8rem;
+            display: inline-block;
+            align-items: center; }
+  body #home-container #user-freinds {
+    width: 25%;
+    padding: 10px;
+    border-left: 1px solid lightgray;
+    height: 100%; }
+    body #home-container #user-freinds .friends {
+      color: black;
+      display: flex;
+      align-items: center; }
+      body #home-container #user-freinds .friends a {
+        color: black;
+        margin-left: 10%; }
+
+body img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  top: 2%; }
+
+body a {
+  text-decoration: none; }
+  body a span {
+    color: #698cfc; }

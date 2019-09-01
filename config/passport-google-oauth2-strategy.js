@@ -2,11 +2,12 @@ const passport = require('passport');
 const googleStrategy = require('passport-google-oauth').OAuth2Strategy;//requiring oauth2 strategy
 const crypto = require('crypto');
 const User = require('../models/user');
+const env = require('./environment');
 
 passport.use(new googleStrategy({
-    clientID: "900174469843-tv02tpk856ja4s60drrgck9tk24mvg4f.apps.googleusercontent.com",
-    clientSecret: "8_8RsUZ06C8lWbQsD-G-S2JV",
-    callbackURL: "http://localhost:8000/users/auth/google/callback",
+    clientID: env.google_client_id,
+    clientSecret: env.google_client_secret,
+    callbackURL: env.google_call_back_url,
     },
 
     function(accessToken, refreshToken, profile, done){ //accessToken google gives just like jwt, refresh token= if access token is expired then refresh token creates a new access token without asking user to login, profile contains user information

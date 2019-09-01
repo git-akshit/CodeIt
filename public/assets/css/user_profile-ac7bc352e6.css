@@ -1,0 +1,62 @@
+body #user-details {
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 15%;
+  margin-top: 5%; }
+  body #user-details .headers {
+    color: #698cfc;
+    font-size: 0.9rem;
+    font-weight: 400;
+    left: 5%; }
+  body #user-details input {
+    width: 250px;
+    margin-top: 5%;
+    margin-left: 10%;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid #698cfc;
+    outline: none;
+    font-size: 0.8rem;
+    color: #698cfc; }
+  body #user-details .button {
+    height: 35px;
+    width: 70px;
+    color: white;
+    background-color: #698cfc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    margin-left: 39.5%; }
+  body #user-details .file {
+    height: 35px;
+    width: 320px;
+    color: #698cfc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    border: none; }
+  body #user-details .button:hover {
+    cursor: pointer; }
+  body #user-details img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    top: 2%; }
+  body #user-details .user-name {
+    display: flex;
+    width: 55%;
+    align-items: center;
+    justify-content: space-between; }
+  body #user-details .add-friend {
+    width: 25%;
+    margin-top: 5%; }
+    body #user-details .add-friend a {
+      text-decoration: none; }
+      body #user-details .add-friend a span {
+        color: #698cfc; }

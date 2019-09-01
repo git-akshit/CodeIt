@@ -1,6 +1,9 @@
 const express = require('express');
+const env = require('./config/environment');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const app = express();
+require('./config/view-helpers')(app); //passing app instance to view helpers
 const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
@@ -21,24 +24,30 @@ const chatServer = require('http').Server(app); //requiring Server with app
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer); // requiring chat sockets
 chatServer.listen(5000);
 console.log('chat server is listening on port 5000');
+const path = require('path');
 
 //using sass before server so that it changes sass files to css that is complies css files
-app.use(sassMiddleware({
-    src: './assets/scss', //source of files
-    dest: './assets/css', //where to put the css files
-    debug:true, //show debug message
-    outputStyle: 'extended', //show error in multiple lines
-    prefix: '/css' // /css is prefix 
-}));
+if (env.name == 'development'){
+    app.use(sassMiddleware({
+        src: path.join(__dirname, env.asset_path, 'scss'), //source of files
+        dest: path.join(__dirname, env.asset_path, 'css'), //where to put the css files
+        debug:true, //show debug message
+        outputStyle: 'extended', //show error in multiple lines
+        prefix: '/css' // /css is prefix 
+    }));
+}
+
 
 app.use(express.urlencoded());//reading from the post requests
 //cookies are read from middleware
 app.use(cookieParser());//setting up/using the cookie parser
 
-app.use(express.static('./assets'));//telling where static files are
+app.use(express.static(env.asset_path));//telling where static files are
 
 // make the uploads path available to the browser
 app.use('/uploads', express.static(__dirname + '/uploads'));
+
+app.use(logger(env.morgan.mode, env.morgan.options)); // using morgan to write in files
 
 app.use(expressLayouts); //using expressLayouts before routes because routes renders the view and we need to tell view that there are layouts also
 
@@ -55,7 +64,7 @@ app.set('views', './views');
 app.use(session({//using express-session' in middleware to encrypt the cookie
     name: 'codeial',// name of the session cookie
     //TODO change the secret before deployment in production mode
-    secret: 'blahsomething',
+    secret: env.session_cookie_key,
     saveUninitialized: false,//there is a request which is not initialised, a session which has not initialised, a user which has not logged in,the identity is not established in that case do i need to store extra data in the session cookie? false means no
     resave: false, //when the identity is established then some sort of data is present in session cookie which is session data which user data do i need to rewrite it even if it has not changed?do i go and write the same thing again, i dont want to write same thing again abd again thats why it is false
     cookie: {
